@@ -1,0 +1,4 @@
+查看執行序狀態
+a)cmd		//打開dos
+b)jps 		//查到 PID
+c)jstack -l PID //查看執行序狀態
