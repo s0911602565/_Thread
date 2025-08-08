@@ -1,0 +1,20 @@
+
+package com;
+
+import java.util.concurrent.locks.LockSupport;
+
+class A extends Thread{
+    public void run(){
+        System.out.println("1");
+        LockSupport.park();
+        System.out.println("2");
+       }
+}
+public class main2 {
+    public static void main(String[] args)throws Exception{
+        A a = new A();
+        a.start();
+        Thread.sleep(2000);
+        LockSupport.unpark(a);
+    }
+}
