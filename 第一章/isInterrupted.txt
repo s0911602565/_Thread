@@ -1,0 +1,4 @@
+	非靜態
+        Thread.currentThread().interrupt();
+        System.out.println(Thread.currentThread().isInterrupted());//true
+        System.out.println(Thread.currentThread().isInterrupted());//true

@@ -1,0 +1,4 @@
+SELECT s.sid, s.serial#, s.username, q.sql_text
+FROM v$session s
+JOIN v$sql q ON s.sql_id = q.sql_id
+WHERE s.status = 'ACTIVE';

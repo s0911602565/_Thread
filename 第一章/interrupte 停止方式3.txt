@@ -1,0 +1,10 @@
+使用return;
+
+public void run() {
+        while(true){
+            if(this.interrupted()){
+                System.out.println("結束");
+                return ;
+            }
+            System.out.println("end2");
+        }

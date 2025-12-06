@@ -1,0 +1,27 @@
+	靜態 作用在目前
+        Thread.currentThread().interrupt();
+        System.out.println(Thread.currentThread().interrupted());//true   詢問目前有被中斷嗎= true ，回傳一個flag為false
+        System.out.println(Thread.currentThread().interrupted());//false
+
+
+
+	範例------------------------------------------------------
+        try {
+            while (true) {
+                if (this.interrupted()) {
+                    throw new InterruptedException("錯了!");
+                }
+		//這邊不會執行到
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();//跑到這邊顯示錯誤
+        }
+
+
+
+	特殊解說
+        a.interrupted() 等於 Thread.interrupted()
+
+        👉 檢查的是 main thread ，不是 a thread。
+
+        interrupted() 永遠檢查的是『呼叫它的那條執行緒』

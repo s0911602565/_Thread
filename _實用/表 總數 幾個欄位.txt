@@ -1,0 +1,19 @@
+查每張表總count(1)
+SELECT table_name, num_rows
+FROM user_tables
+ORDER BY num_rows DESC;
+輸出---------------------------------
+TABLE_NAME	NUM_ROWS
+TEST		82608
+MYVIEW1		72609
+
+
+查每張表有幾個欄位
+SELECT table_name, COUNT(*) AS column_count
+FROM user_tab_columns
+GROUP BY table_name
+ORDER BY column_count DESC;
+輸出---------------------------------
+TABLE_NAME	COLUMN_COUNT
+TEST		26 --總共有26個欄位
+MYVIEW1		2
