@@ -1,0 +1,28 @@
+//Thread.yield  放棄CPU資源
+//把他註解掉很快就執行完
+//沒有註解,會執行超久才會執行完畢
+
+package com;
+
+class A extends  Thread {
+
+    public void run() {
+        long b = System.currentTimeMillis();
+        int count = 0;
+        for (int i = 0; i < 50000000; i++) {
+            Thread.yield();
+            count = count + (i + 1);
+        }
+        long b2 = System.currentTimeMillis();
+        System.out.println((b2 - b) + "毫秒");
+
+    }
+}
+
+public class main2 {
+
+    public static void main(String[] args) {
+        A a = new A();
+        a.start();
+    }
+}

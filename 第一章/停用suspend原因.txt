@@ -1,0 +1,32 @@
+package com;
+
+class A extends Thread {
+
+    int i = 0;
+
+    public void run() {
+        while (true) {
+            i++;
+            //a)拿掉 會顯示 main end
+            //b)加上去 會跑while 的println 因此不會執行 suspend。 
+            //因為 println 有synchonized
+
+            System.out.println(i);
+        }
+    }
+}
+
+public class main1 {
+
+    public static void main(String[] args) {
+        try {
+            A a = new A();
+            a.start();
+            a.sleep(1000);
+            a.suspend();
+            System.out.println("main end");
+        } catch (Exception e) {
+        }
+
+    }
+}

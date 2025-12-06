@@ -1,0 +1,4 @@
+方法			類型		說明
+Thread.interrupted()	靜態方法	檢查目前執行緒是否被中斷，並 清除中斷狀態
+thread.isInterrupted()	實例方法	檢查某個執行緒是否被中斷，但 不會清除中斷狀態
+thread.interrupt()	實例方法	設定某個執行緒的中斷旗標（發送中斷）
