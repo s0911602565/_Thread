@@ -1,0 +1,6 @@
+            resume重新開始 suspend 暫停
+
+            if(Thread.currentThread().getName().equals("a")){
+                System.out.println("線程已經暫停");
+                Thread.currentThread().suspend();
+            }
