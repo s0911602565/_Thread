@@ -1,0 +1,19 @@
+✔ 特點
+
+不會死鎖（因為 unpark 可先呼叫）
+
+park 可被 interrupt
+
+lock、AQS（ReentrantLock, Semaphore）底層都用這個
+
+
+
+範例
+
+public void run() {
+        LockSupport.park();//鎖住
+}
+-------------------------------
+
+a.start();
+LockSupport.unpark(a); //解開鎖
