@@ -1,0 +1,12 @@
+join功能: 一定要完成才會往下執行
+
+範例---------------------------------------
+run(){
+	System.out.println("我是執行緒!");
+}
+
+main(){
+	a.start();
+	a.join();//呼叫後,先完成,再往下執行
+	System.out.println("main end");
+}
