@@ -1,7 +1,6 @@
 package com.thread;
 
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.LockSupport;
+ 
 
 class A implements Runnable {
 
@@ -26,7 +25,7 @@ public class Test1 {
         Thread t1 = new Thread(a);
         t1.start();
         Thread.sleep(1500);
-        a.setRunning();
+        a.setRunning();//實際測試(johnlee) ，沒有加上volatile會一直跑while迴圈
         System.out.println("main end");
         
     }
