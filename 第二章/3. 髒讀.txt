@@ -1,0 +1,53 @@
+解說: 
+一個有加上synchronized(setMethod)
+一個'沒有'加上synchronized (getMethod) 
+執行就會馬上調用getMethod方法，導致輸出為 b、aa
+
+
+    
+class V {
+    String username="a";
+    String pwd="aa";
+    public V( ){
+        
+        
+    }
+    synchronized public void setMethod(String username, String pwd){
+        try {
+            this.username = username;
+            Thread.sleep(5000);
+            this.pwd = pwd;
+            System.out.println("values:"+this.username + " " + this.pwd);
+        } catch (Exception e) {
+        }
+    }
+    /*synchronized*/ public void getMethod(){
+        System.out.println("values:"+this.username + " " + this.pwd);
+    }
+}
+
+
+class A implements Runnable {
+    V v ;
+    public A (V v){
+        this.v = v;
+    }
+    public void run() {
+        v.setMethod("b", "bb");
+    }
+
+}
+
+public class Test1 {
+
+    
+    public static void main(String[] args) throws Exception {
+        V v = new V();
+        A a = new A(v);
+        Thread t1 = new Thread(a);
+        t1.start();
+        Thread.sleep(200);
+        v.getMethod();
+            
+    }
+}
