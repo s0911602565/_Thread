@@ -1,0 +1,68 @@
+重點:
+執行 doSome1() ，
+沒辦法馬上執行 doSome2() 
+雖然不同方法。
+原因為 synchronized(this) 鎖的是「同一個物件 a」。同一把鎖
+
+
+範例
+
+class A {
+    public void doSome1() {
+        synchronized (this) {
+            try {
+                System.out.println(Thread.currentThread().getName() + ":" + System.currentTimeMillis());
+                Thread.sleep(2000);
+
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    public void doSome2() {
+        synchronized (this) {
+            try { 
+                Thread.sleep(2000);
+                System.out.println(Thread.currentThread().getName() + ":" + System.currentTimeMillis());
+            } catch (Exception e) {
+            }
+        }
+
+    }
+
+}
+
+class Th1 implements Runnable {
+    A a;
+    public Th1(A a) {this.a = a;}
+
+    public void run() {
+        a.doSome1();
+    }
+}
+
+class Th2 implements Runnable {
+    A a;
+    public Th2(A a) {this.a = a;}
+
+    public void run() {
+        a.doSome2();
+    }
+}
+
+public class Test1 {
+
+    public static void main(String[] args) throws Exception {
+        A a = new A();
+        Thread th1 = new Thread(new Th1(a));
+        Thread th2 = new Thread(new Th2(a));
+
+        long s1 = System.currentTimeMillis();
+
+        th1.start();
+        th2.start();
+ 
+        long s2 = System.currentTimeMillis();
+        System.out.println("main end:" + (s2 - s1) / 1000); //輸出4秒
+    }
+}
