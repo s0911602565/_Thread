@@ -1,0 +1,19 @@
+volatile 目的就是停止 while(true)
+
+
+
+    private int i= 0;
+    private volatile  boolean flag = true;
+    
+    public void run() {
+        while (flag) {
+            i++;
+        }
+        System.out.println(i);
+    }
+
+
+----------------------------------------------
+    th1.start();
+    Thread.sleep(2000);
+    a.setFlag(); //沒有加上 volatile 會一直跑

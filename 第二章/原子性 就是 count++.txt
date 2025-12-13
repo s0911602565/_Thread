@@ -1,0 +1,5 @@
+count ++ 原子性
+
+讀count
+對count++
+寫回count
