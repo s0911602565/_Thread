@@ -1,0 +1,90 @@
+package com.thread;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+class A implements Runnable {
+
+    private Object obj1 = new Object();
+    private Object obj2 = new Object();
+    private String username;
+
+    public void setUsername(String usernme) {
+        this.username = usernme;
+    }
+
+    public void run() {
+        try {
+            if (username.equals("a")) {
+                synchronized (obj1) {
+                    System.out.println("begin A " + System.currentTimeMillis());
+                    Thread.sleep(3000);
+                    System.out.println("end A");
+                    synchronized (obj2) {
+                        System.out.println("lock1 >> lock2 ");
+                    }
+                }
+
+            }
+
+            if (username.equals("b")) {
+                synchronized (obj2) {
+                    System.out.println("begin B " + System.currentTimeMillis());
+                    Thread.sleep(3000);
+                    System.out.println("end B");
+                    synchronized (obj1) {
+                        System.out.println("lock2 >>  lock1");
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+        }
+    }
+
+}
+
+class Th1 implements Runnable {
+
+    A a;
+
+    public Th1(A a) {
+        this.a = a;
+    }
+
+    public void run() {
+
+    }
+}
+
+class Th2 implements Runnable {
+
+    A a;
+
+    public Th2(A a) {
+        this.a = a;
+
+    }
+
+    public void run() {
+
+    }
+}
+
+public class Test1 {
+
+    public static void main(String[] args) throws Exception {
+        A a = new A();
+        a.setUsername("a");
+
+        Thread thread0 = new Thread(a);
+        thread0.start();
+        Thread.sleep(200);
+        Thread threadx = new Thread(a);
+        a.setUsername("b");
+        threadx.start();
+
+    }
+}

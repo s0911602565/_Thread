@@ -1,0 +1,43 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.thread;
+str = "abc"; 角色是牠 
+
+
+
+class A implements Runnable {
+
+    private String str = "123";
+
+    public void run() {
+        synchronized (str) {
+            try {
+                System.out.println("begin " +Thread.currentThread().getName());
+                str = "abc";
+                Thread.sleep(2000);
+                System.out.println("end " +Thread.currentThread().getName());
+
+            } catch (Exception e) {
+            }
+        }
+    }
+
+}
+
+public class Test1 {
+
+    public static void main(String[] args) throws Exception {
+        A a = new A();
+        Thread t = new Thread(a);
+        t.setName("A");
+        t.start();
+        Thread.sleep(50);
+        Thread t2 = new Thread(a);
+        t2.setName("B");
+        t2.start();
+        
+    }
+}

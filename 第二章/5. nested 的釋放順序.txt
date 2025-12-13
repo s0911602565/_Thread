@@ -1,0 +1,11 @@
+synchronized(lock1) {         // 1. 拿到 lock1
+    synchronized(lock2) {     // 2. 拿到 lock2
+        synchronized(lock3) { // 3. 拿到 lock3
+            synchronized(lock4) { // 4. 拿到 lock4
+                synchronized(lock5) { // 5. 拿到 lock5
+                    // do something...
+                } // A. 離開 → 釋放 lock5
+            } // B. 離開 → 釋放 lock4
+        } // C. 離開 → 釋放 lock3
+    } // D. 離開 → 釋放 lock2
+} // E. 離開 → 釋放 lock1
