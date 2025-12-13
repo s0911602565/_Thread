@@ -1,0 +1,15 @@
+System.out.println(Thread.currentThread().holdsLock(this));
+
+
+
+
+範例
+
+    public void run() {
+        System.out.println(Thread.currentThread().holdsLock(this));//初始值 false
+        synchronized (this) {
+            System.out.println(Thread.currentThread().holdsLock(this)); //持鎖true
+        }
+        System.out.println(Thread.currentThread().holdsLock(this)); //釋放鎖 false
+    }
+
