@@ -1,0 +1,13 @@
+
+建議使用 while
+當while 結束 會再一次判斷flag == true否
+
+while(flag == true){
+	lock.wait();
+}
+
+
+if(flag == true){
+	lock.wait();
+}
+
