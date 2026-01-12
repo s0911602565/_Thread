@@ -1,0 +1,12 @@
+什麼時候「一定要」用 Test.class？
+✔ 適合情境
+
+保護 static 欄位
+
+static 快取 / static Map
+
+static 計數器
+
+singleton 初始化
+
+static factory method
